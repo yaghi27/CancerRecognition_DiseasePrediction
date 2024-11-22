@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .tabcontent {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .head {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .form-label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+    }
+    .form-control {
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: border-color 0.2s ease-in-out;
+    }
+    .form-control:focus {
+      border-color: #3498db;
+      box-shadow: none;
+    }
+    .btn-primary {
+      background-color: #3498db;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .btn-primary:hover {
+      background-color: #2980b9;
+    }
+    .prediction-box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      color: #555;
+    }
+</style>
+</head>
+<body>
+  {% block body%}
+
+  
+  <div class="container tabcontent">
+    <form name="SymptomForm" id="SymForm" method="POST" action="/disease_predict">
+      <div class="head">
+        Symptom Checker
+      </div>
+      <div class="form-group">
+        <label for="Symptom1" align="left">Symptom1</label>
+        <input type="text" list="symp" multiple="multiple" class="form-control" name="Symptom1">
+        <datalist id="symp">
+            {% for symp in symptoms %}
+            <option value= "{{symp}}">{{symp}}</option>
+          {% endfor %}
+        </datalist>
+  
+        <label for="Symptom2" align="left">Symptom2</label>
+        <input type="text" list="symp" multiple="multiple" class="form-control" name="Symptom2">
+        <datalist id="symp">
+            {% for symp in symptoms %}
+            <option value= "{{symp}}">{{symp}}</option>
+          {% endfor %}
+        </datalist>
+  
+        <label for="Symptom3" align="left">Symptom3</label>
+        <input type="text" list="symp" multiple="multiple" class="form-control" name="Symptom3">
+        <datalist id="symp">
+            {% for symp in symptoms %}
+            <option value= "{{symp}}">{{symp}}</option>
+          {% endfor %}
+        </datalist>
+  
+        <label for="Symptom4" align="left">Symptom4</label>
+        <input type="text" list="symp" multiple="multiple" class="form-control" name="Symptom4">
+        <datalist id="symp">
+            {% for symp in symptoms %}
+            <option value= "{{symp}}">{{symp}}</option>
+          {% endfor %}
+        </datalist>
+  
+        <label for="Symptom5" align="left">Symptom5</label>
+        <input type="text" list="symp" multiple="multiple" class="form-control" name="Symptom5">
+        <datalist id="symp">
+            {% for symp in symptoms %}
+            <option value= "{{symp}}">{{symp}}</option>
+          {% endfor %}
+        </datalist>
+  
+      </div>
+      <button type="submit" class="btn btn-primary" style="padding: 10px;" name="form">Check</button>
+      
+    </form>
+  </div>
+
+
+ <div id="prediction" class="prediction-box">
+      {% if disease %}
+        <p>
+          There are chances you may have {{ disease[0] }}
+        </p>
+        <p>
+          {{disease[1]}}
+        </p>
+        <p>
+          {{disease[2]}}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+</body>
+</html>
+
